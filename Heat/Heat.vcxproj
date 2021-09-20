@@ -11,12 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Heat\Log.h" />
     <ClInclude Include="src\Heat.h" />
     <ClInclude Include="src\Heat\Application.h" />
     <ClInclude Include="src\Heat\Core.h" />
     <ClInclude Include="src\Heat\EntryPoint.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Heat\Log.cpp" />
     <ClCompile Include="src\Heat\Application.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -69,6 +71,7 @@
       <PreprocessorDefinitions>HT_PLATFORM_WINDOWS;HT_BUILD_DLL;;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Heat\vendor\spdlog\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -84,6 +87,7 @@
       <PreprocessorDefinitions>HT_PLATFORM_WINDOWS;HT_BUILD_DLL;;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Heat\vendor\spdlog\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

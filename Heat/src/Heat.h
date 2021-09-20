@@ -2,8 +2,8 @@
 
 //for use by Heat applications
 
-#include <stdio.h>
 #include "Heat/Application.h"
+#include "Heat/Log.h"
 
 // -- Entry Point ---------------------------------------------------
 #include "Heat/EntryPoint.h"
