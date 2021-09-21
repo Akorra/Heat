@@ -12,4 +12,12 @@
 	#error Heat only supports Windows!
 #endif
 
+#ifdef HT_ENABLE_ASSERTS
+	#define HT_ASSERT(x, ...) { if(!(x)) { HZ_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } } 
+	#define HT_CORE_ASSERT(x, ...) { if(!(x)) { HZ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } } 
+#else
+	#define HT_ASSERT(x, ...)
+	#define HT_CORE_ASSERT(x, ...) 
+#endif
+
 #define BIT(x) (1 << x)

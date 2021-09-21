@@ -11,6 +11,12 @@ workspace "Heat"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Heat/vendor/GLFW/include"
+
+include "Heat/vendor/GLFW"
+
 project "Heat"
 	location "Heat"
 	kind "SharedLib"
@@ -18,6 +24,9 @@ project "Heat"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	pchheader "htpch.h"
+	pchsource "Heat/src/htpch.cpp"
 
 	files
 	{
@@ -27,7 +36,15 @@ project "Heat"
 
 	includedirs
 	{
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -46,15 +63,15 @@ project "Heat"
 		}
 
 		filter "configurations:Debug"
-			defines "HZ_DEBUG"
+			defines "HT_DEBUG"
 			symbols "On"
 
 		filter "configurations:Release"
-			defines "HZ_RELEASE"
+			defines "HT_RELEASE"
 			optimize "On"
 
 		filter "configurations:Dist"
-			defines "HZ_DIST"
+			defines "HT_DIST"
 			optimize "On"
 
 project "Sandbox"
@@ -92,13 +109,13 @@ project "Sandbox"
 		}
 
 		filter "configurations:Debug"
-			defines "HZ_DEBUG"
+			defines "HT_DEBUG"
 			symbols "On"
 
 		filter "configurations:Release"
-			defines "HZ_RELEASE"
+			defines "HT_RELEASE"
 			optimize "On"
 
 		filter "configurations:Dist"
-			defines "HZ_DIST"
+			defines "HT_DIST"
 			optimize "On"
