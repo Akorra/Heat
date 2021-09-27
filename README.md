@@ -1,9 +1,7 @@
 # Heat
-<<<<<<< HEAD
 Heat Engine
 
 ## Planning
-=======
 Heat is, for now, the name of the 3D engine to be developed in this repository.
 
 ## Planning Main Components
@@ -23,4 +21,3 @@ Heat is, for now, the name of the 3D engine to be developed in this repository.
 * **Physics**
 * **File I/O**
 * **Build System**
->>>>>>> e55864a25c0a3f7ab1bff008d9aa8520e5ce6953
