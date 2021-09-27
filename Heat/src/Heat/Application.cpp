@@ -2,9 +2,6 @@
 
 #include "Application.h"
 
-#include "Heat/Events/Event.h"
-#include "Heat/Events/ApplicationEvent.h"
-
 #include <GLFW/glfw3.h>
 
 namespace Heat {
