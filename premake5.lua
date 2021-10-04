@@ -14,8 +14,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Heat/vendor/GLFW/include"
+IncludeDir["Glad"] = "Heat/vendor/Glad/include"
 
 include "Heat/vendor/GLFW"
+include "Heat/vendor/Glad"
 
 project "Heat"
 	location "Heat"
@@ -38,12 +40,14 @@ project "Heat"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -54,7 +58,8 @@ project "Heat"
 
 		defines{
 			"HT_PLATFORM_WINDOWS",
-			"HT_BUILD_DLL"
+			"HT_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -64,14 +69,17 @@ project "Heat"
 
 		filter "configurations:Debug"
 			defines "HT_DEBUG"
+			buildoptions "/MDd"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "HT_RELEASE"
+			buildoptions "/MD"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "HT_DIST"
+			buildoptions "/MD"
 			optimize "On"
 
 project "Sandbox"
@@ -110,12 +118,15 @@ project "Sandbox"
 
 		filter "configurations:Debug"
 			defines "HT_DEBUG"
+			buildoptions "/MDd"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "HT_RELEASE"
+			buildoptions "/MD"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "HT_DIST"
+			buildoptions "/MD"
 			optimize "On"

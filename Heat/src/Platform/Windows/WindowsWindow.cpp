@@ -5,6 +5,8 @@
 #include "Heat/Events/MouseEvent.h"
 #include "Heat/Events/KeyEvent.h"
 
+#include <glad/glad.h>
+
 namespace Heat
 {
 	//static guaranteed that GLFW only gets initialized once, even with multiple windows
@@ -47,6 +49,10 @@ namespace Heat
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title, nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		HT_CORE_ASSERT(status, "Failed to initialize Glad!");
+		
 		glfwSetWindowUserPointer(m_Window, &m_Data); // GLFWwindow will have the data we set here (by void ptr)
 		SetVSync(true);
 

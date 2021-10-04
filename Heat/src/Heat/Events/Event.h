@@ -44,7 +44,6 @@ namespace Heat {
 
 	public:
 		bool Handled = false;
-		
 	};
 
 	inline std::ostream& operator<<(std::ostream& os, const Event& e)

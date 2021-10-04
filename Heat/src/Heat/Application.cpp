@@ -2,7 +2,7 @@
 
 #include "Application.h"
 
-#include <GLFW/glfw3.h>
+#include <Glad/glad.h>
 
 namespace Heat {
 
@@ -53,7 +53,7 @@ namespace Heat {
 	void Application::PushOverlay(Layer* overlay)
 	{
 		m_LayerStack.PushOverlay(overlay);
-		overlay->OnAttach();
+		overlay->OnAttach(); 
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& event)
