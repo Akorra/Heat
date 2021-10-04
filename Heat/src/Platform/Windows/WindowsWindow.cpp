@@ -1,6 +1,10 @@
 #include "htpch.h"
 #include "WindowsWindow.h"
 
+#include "Heat/Events/ApplicationEvent.h"
+#include "Heat/Events/MouseEvent.h"
+#include "Heat/Events/KeyEvent.h"
+
 namespace Heat
 {
 	//static guaranteed that GLFW only gets initialized once, even with multiple windows
@@ -11,7 +15,7 @@ namespace Heat
 		HT_CORE_ERROR("GLFW Error {0}: {1}", error, description);
 	}
 
-	//platform specific implementation for create
+	//platform specific implementation for create 
 	Window* Window::Create(const WindowProps& props) { return new WindowsWindow(props); }
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
@@ -53,12 +57,16 @@ namespace Heat
 			data.Height = height;
 
 			// Window resize event callback
+			WindowResizeEvent event(width, height);
+			data.EventCallback(event);
 		});
 
 		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 			// Window close callback
+			WindowCloseEvent event;
+			data.EventCallback(event);
 		});
 
 		//args: key-keyboard key pressed, scancode-system-specific scancode for key; action - GLFW_PRESS GLFW_RELEASE GLFW_REPEAT, mods - held down modifier keys(bit field) 
@@ -70,17 +78,20 @@ namespace Heat
 			{
 				case GLFW_PRESS:
 				{
-					HT_INFO("Pressed key {0}", glfwGetKeyName(key, scancode));
+					KeyPressedEvent event(key, 0);
+					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					HT_INFO("Released key {0}", glfwGetKeyName(key, scancode));
+					KeyPressedEvent event(key, 1);
+					data.EventCallback(event);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					HT_INFO("Pressing key {0}", glfwGetKeyName(key, scancode));
+					KeyReleasedEvent event(key);
+					data.EventCallback(event);
 					break;
 				}
 			}
@@ -91,15 +102,16 @@ namespace Heat
 
 			switch (action)
 			{
-				
 				case GLFW_PRESS:
 				{
-					HT_INFO("Pressed {0} button", button ? "right" : "left");
+					MouseButtonPressedEvent event(button);
+					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					HT_INFO("Reelased {0} button", button ? "right" : "left");
+					MouseButtonReleasedEvent event(button);
+					data.EventCallback(event);
 					break;
 				}
 			}
@@ -108,14 +120,15 @@ namespace Heat
 		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			HT_INFO("Mouse scroll offsets ({0},{1})", xOffset, yOffset);
-
+			MouseScrolledEvent event(xOffset, yOffset);
+			data.EventCallback(event);
 		});
 
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			HT_INFO("Mouse at ({0},{1})", xPos, yPos);
+			MouseMovedEvent event(xPos, yPos);
+			data.EventCallback(event);
 		});
 	}
 

@@ -15,7 +15,8 @@ namespace Heat {
 		inline unsigned int GetWidth()  const override { return m_Data.Width; }
 		inline unsigned int GetHeight() const override { return m_Data.Height; }
 
-		//attributes
+		//Window attributes
+		inline void SetEventCallback(const EventCallbackFunction& callback) override { m_Data.EventCallback = callback; }
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
 
@@ -32,6 +33,8 @@ namespace Heat {
 			const char* Title;
 			unsigned int Width, Height;
 			bool VSync;
+
+			EventCallbackFunction EventCallback;
 		};
 
 		WindowData m_Data; 
