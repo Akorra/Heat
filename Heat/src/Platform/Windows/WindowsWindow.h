@@ -22,6 +22,7 @@ namespace Heat {
 
 	private:
 		virtual void Init(const WindowProps& props);
+		void CursorPosCallback(GLFWwindow* window, double xPos, double yPos);
 		virtual void Shutdown();
 
 	private:

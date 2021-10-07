@@ -75,6 +75,13 @@ namespace Heat
 			data.EventCallback(event);
 		});
 
+		glfwSetWindowFocusCallback(m_Window, [](GLFWwindow* window, int focused) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			WindowFocusEvent event(focused);
+			data.EventCallback(event);
+		});
+
 		//args: key-keyboard key pressed, scancode-system-specific scancode for key; action - GLFW_PRESS GLFW_RELEASE GLFW_REPEAT, mods - held down modifier keys(bit field) 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -90,17 +97,24 @@ namespace Heat
 				}
 				case GLFW_RELEASE:
 				{
-					KeyPressedEvent event(key, 1);
+					KeyReleasedEvent event(key);
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					KeyReleasedEvent event(key);
+					KeyPressedEvent event(key, 1);
 					data.EventCallback(event);
 					break;
 				}
 			}
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int character) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			KeyTypedEvent event(character);
+			data.EventCallback(event);
 		});
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) {

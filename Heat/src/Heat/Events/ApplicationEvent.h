@@ -39,6 +39,28 @@ namespace Heat
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
+	class HEAT_API WindowFocusEvent : public Event
+	{
+	public:
+		WindowFocusEvent(int focus) 
+			: m_Focus(focus) 
+		{}
+
+		inline int GetFocus() const { return m_Focus; }
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "WindowFocusEvent: " << m_Focus;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(WindowFocus)
+		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+	private:
+		int m_Focus;
+	};
+
 	class HEAT_API AppTickEvent : public Event
 	{
 	public:

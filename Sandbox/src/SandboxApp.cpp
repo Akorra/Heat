@@ -9,12 +9,12 @@ public:
 
 	void OnUpdate() override
 	{
-		HT_INFO("Example Layer Update");
+		//HT_INFO("Example Layer Update");
 	}
 
 	void OnEvent(Heat::Event& event) override
 	{
-		HT_TRACE("{0}", event);
+		//HT_TRACE("{0}", event);
 	}
 };
 
