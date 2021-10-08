@@ -20,9 +20,10 @@ namespace Heat {
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
 
+		inline void* GetNativeWindow() const override { return m_Window; }
+
 	private:
 		virtual void Init(const WindowProps& props);
-		void CursorPosCallback(GLFWwindow* window, double xPos, double yPos);
 		virtual void Shutdown();
 
 	private:
