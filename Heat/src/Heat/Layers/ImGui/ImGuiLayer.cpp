@@ -2,7 +2,7 @@
 #include "ImGuiLayer.h"
 
 #include "Platform/OpenGL/ImGuiOpenGLRenderer.h"
-#include "Heat/Application.h"
+#include "Heat/Core/Application.h"
 
 //TEMPORARY
 #include <GLFW/glfw3.h>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "htpch.h"
-#include "Heat/Core.h"
+#include "Heat/Core/Base.h"
 #include "Heat/Events/Event.h"
 
 //TODO: Add Event support, with a callback function

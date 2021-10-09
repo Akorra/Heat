@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Heat/Core.h"
+#include "Heat/Core/Base.h"
 #include "Heat/Layers/LayerStack.h"
 #include "Heat/Events/Event.h"
 #include "Heat/Events/ApplicationEvent.h"
 
-#include "Heat/Window.h"
+#include "Heat/Core/Window.h"
 
 namespace Heat {
 	class HEAT_API Application

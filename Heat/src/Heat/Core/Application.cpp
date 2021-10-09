@@ -19,8 +19,7 @@ namespace Heat {
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 	}
-
-	Application::~Application()
+		Application::~Application()
 	{
 	}
 
@@ -34,8 +33,7 @@ namespace Heat {
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
-			auto [x, y] = Input::GetMousePosition();
-			HT_CORE_TRACE("{0}, {1}", x, y);
+			//auto [x, y] = Input::GetMousePosition();
 
 			m_Window->OnUpdate();
 		}

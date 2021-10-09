@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Heat/Window.h"
+#include "Heat/Core/Window.h"
 #include "GLFW/glfw3.h"
 
 namespace Heat {

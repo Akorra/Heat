@@ -1,7 +1,7 @@
 #pragma once
 
 #include "htpch.h"
-#include "Heat/Core.h"
+#include "Heat/Core/Base.h"
 
 namespace Heat {
 

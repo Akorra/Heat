@@ -12,7 +12,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Heat/Log.h"
+#include "Heat/Core/Log.h"
 
 #ifdef HZ_PLATAFORM_WINDOWS
 	#include <Windows.h>

@@ -1,7 +1,7 @@
 #include "htpch.h"
 #include "WindowsInput.h"
 
-#include "Heat/Application.h"
+#include "Heat/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 

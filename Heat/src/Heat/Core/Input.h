@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Heat/Core.h"
+#include "Heat/Core/Base.h"
 
 namespace Heat 
 {

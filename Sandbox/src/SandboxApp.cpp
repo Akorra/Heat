@@ -9,7 +9,8 @@ public:
 
 	void OnUpdate() override
 	{
-		//HT_INFO("Example Layer Update");
+		if (Heat::Input::IsKeyPressed(HT_KEY_TAB))
+			HT_INFO("Tab key is pressed!");
 	}
 
 	void OnEvent(Heat::Event& event) override

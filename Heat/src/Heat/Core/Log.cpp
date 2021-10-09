@@ -1,6 +1,6 @@
 #include "htpch.h"
 
-#include "Heat/Log.h"
+#include "Heat/Core/Log.h"
 
 #include "spdlog/sinks/stdout_color_sinks.h"
 

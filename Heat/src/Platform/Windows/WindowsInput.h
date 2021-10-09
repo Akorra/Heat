@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Heat/Input.h"
+#include "Heat/Core/Input.h"
 
 namespace Heat {
 	class WindowsInput : public Input
