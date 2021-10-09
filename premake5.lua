@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Heat/vendor/GLFW/include"
 IncludeDir["Glad"] = "Heat/vendor/Glad/include"
 IncludeDir["ImGui"] = "Heat/vendor/imgui"
+IncludeDir["glm"] = "Heat/vendor/glm"
 
 group "Dependencies"
 	include "Heat/vendor/GLFW"
@@ -47,7 +48,8 @@ project "Heat"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -100,12 +102,15 @@ project "Sandbox"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs
 	{
 		"Heat/vendor/spdlog/include",
+		"%{IncludeDir.glm}",
 		"Heat/src"
 	}
 
