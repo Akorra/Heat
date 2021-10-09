@@ -15,7 +15,11 @@ public:
 
 	void OnEvent(Heat::Event& event) override
 	{
-		//HT_TRACE("{0}", event);
+		if (event.GetEventType() == Heat::EventType::KeyPressed)
+		{ 
+			Heat::KeyPressedEvent& e = (Heat::KeyPressedEvent&)event;
+			HT_INFO("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 
