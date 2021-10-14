@@ -17,6 +17,8 @@ namespace Heat
 	void LayerStack::PushLayer(Layer* layer)
 	{
 		m_Layers.emplace(m_Layers.begin() + m_LayerInsertIndex, layer);
+		layer->OnAttach();
+
 		m_LayerInsertIndex++;
 	}
 
@@ -26,6 +28,8 @@ namespace Heat
 		if (it != m_Layers.end())
 		{
 			m_Layers.erase(it);
+			layer->OnDetach();
+
 			m_LayerInsertIndex--;
 		}
 	}
@@ -33,12 +37,15 @@ namespace Heat
 	void LayerStack::PushOverlay(Layer* overlay)
 	{
 		m_Layers.emplace_back(overlay);
+		overlay->OnAttach();
 	}
 
 	void LayerStack::PopOverlay(Layer* overlay)
 	{
 		auto it = std::find(m_Layers.begin(), m_Layers.end(), overlay);
-		if (it != m_Layers.end())
+		if (it != m_Layers.end()) {
 			m_Layers.erase(it);
+			overlay->OnDetach();
+		}
 	}
 }
