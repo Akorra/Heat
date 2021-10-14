@@ -39,7 +39,9 @@ project "Heat"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -102,16 +104,15 @@ project "Sandbox"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl"
+		"%{prj.name}/src/**.cpp"
 	}
 
 	includedirs
 	{
 		"Heat/vendor/spdlog/include",
-		"%{IncludeDir.glm}",
-		"Heat/src"
+		"Heat/src",
+		"Heat/vendor",
+		"%{IncludeDir.glm}"
 	}
 
 	links
