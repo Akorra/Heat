@@ -1,5 +1,5 @@
 #include <Heat.h>
-
+#include <imgui/imgui.h>
 class ExampleLayer : public Heat::Layer
 {
 public:
@@ -13,10 +13,17 @@ public:
 			HT_INFO("Tab key is pressed!");
 	}
 
+	virtual void OnImGuiRender() 
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World!");
+		ImGui::End();
+	}
+
 	void OnEvent(Heat::Event& event) override
 	{
 		if (event.GetEventType() == Heat::EventType::KeyPressed)
-		{ 
+		{  
 			Heat::KeyPressedEvent& e = (Heat::KeyPressedEvent&)event;
 			HT_INFO("{0}", (char)e.GetKeyCode());
 		}

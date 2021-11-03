@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Heat/Core/Window.h"
+#include "Heat/Renderer/GraphicsContext.h"
 
 #include "GLFW/glfw3.h"
 
@@ -29,6 +30,7 @@ namespace Heat {
 
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		//data to be used by glfw during callbacks
 		struct WindowData
@@ -40,7 +42,7 @@ namespace Heat {
 			EventCallbackFunction EventCallback;
 		};
 
-		WindowData m_Data; 
+		WindowData m_Data;
 	};
 }
 
