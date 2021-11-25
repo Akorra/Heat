@@ -33,6 +33,8 @@ namespace Heat {
 		bool m_Running = true;
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;			//imgui layers automatically added by Heat's runtime
+		
+		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
 
 	private:
 		static Application* m_Instance;

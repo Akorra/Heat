@@ -38,9 +38,10 @@ namespace Heat
 	std::pair<float, float> WindowsInput::GetMousePositionImpl() const
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+	
 		double xpos, ypos;
 		glfwGetCursorPos(window, &xpos, &ypos);
 
 		return { (float)xpos, (float)ypos };
-	}
+	} 
 }
